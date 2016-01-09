@@ -62,6 +62,7 @@ SWEP.Base 					= "weapon_tttbase"
 SWEP.Kind 					= WEAPON_EQUIP
 SWEP.CanBuy 				= {ROLE_TRAITOR}
 SWEP.WeaponID 				= AMMO_C4
+SWEP.AllowDrop				= false
 
 SWEP.ViewModel				= Model("models/weapons/v_jb.mdl")
 SWEP.WorldModel 			= Model("models/weapons/w_jb.mdl")
