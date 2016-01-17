@@ -59,7 +59,7 @@ end
 
 SWEP.Base 					= "weapon_tttbase"
 
-SWEP.Kind 					= WEAPON_EQUIP
+SWEP.Kind 					= WEAPON_EQUIP2
 SWEP.CanBuy 				= {ROLE_TRAITOR}
 SWEP.WeaponID 				= AMMO_C4
 SWEP.AllowDrop				= false
