@@ -1,47 +1,3 @@
-if SERVER then
-	AddCSLuaFile("shared.lua")
-	resource.AddFile("sound/siege/big_explosion.wav")
-	resource.AddFile("sound/siege/jihad.wav")
-	resource.AddFile("models/weapons/v_jb.mdl")
-	resource.AddFile("models/weapons/w_jb.mdl")
-	resource.AddFile("materials/vgui/ttt/icon_c4.vmt")
-	resource.AddFile("materials/vgui/entities/weapon_jihadbomb.vmt")
-	resource.AddFile("materials/vgui/entities/weapon_jihadbomb.vtf")
-	resource.AddFile("materials/models/weapons/w_models/pr0d.c4/bomb1.vmt")
-	resource.AddFile("materials/models/weapons/w_models/pr0d.c4/bomb1_planted.vmt")
-	resource.AddFile("materials/models/weapons/w_models/pr0d.c4/bomb2.vmt")
-	resource.AddFile("materials/models/weapons/w_models/pr0d.c4/bomb3b.vmt")
-	resource.AddFile("materials/models/weapons/w_models/pr0d.c4/hand.vmt")
-	resource.AddFile("materials/models/weapons/w_models/pr0d.c4/screen_04.vmt")
-	resource.AddFile("materials/models/weapons/w_models/pr0d.c4/screen_45.vmt")
-	resource.AddFile("materials/models/weapons/w_models/pr0d.c4/screen_active.vmt")
-	resource.AddFile("materials/models/weapons/w_models/pr0d.c4/screen_off.vmt")
-	resource.AddFile("materials/models/weapons/w_models/pr0d.c4/screen_on.vmt")
-	resource.AddFile("materials/models/weapons/v_models/pr0d.c4/bomb1.vmt")
-	resource.AddFile("materials/models/weapons/v_models/pr0d.c4/bomb1.vtf")
-	resource.AddFile("materials/models/weapons/v_models/pr0d.c4/bomb1_planted.vtf")
-	resource.AddFile("materials/models/weapons/v_models/pr0d.c4/bomb1_ref.vtf")
-	resource.AddFile("materials/models/weapons/v_models/pr0d.c4/bomb2.vmt")
-	resource.AddFile("materials/models/weapons/v_models/pr0d.c4/bomb2.vtf")
-	resource.AddFile("materials/models/weapons/v_models/pr0d.c4/bomb3b.vmt")
-	resource.AddFile("materials/models/weapons/v_models/pr0d.c4/bomb3b.vtf")
-	resource.AddFile("materials/models/weapons/v_models/pr0d.c4/hand.vmt")
-	resource.AddFile("materials/models/weapons/v_models/pr0d.c4/hand.vtf")
-	resource.AddFile("materials/models/weapons/v_models/pr0d.c4/screen_04.vmt")
-	resource.AddFile("materials/models/weapons/v_models/pr0d.c4/screen_04.vtf")
-	resource.AddFile("materials/models/weapons/v_models/pr0d.c4/screen_45.vmt")
-	resource.AddFile("materials/models/weapons/v_models/pr0d.c4/screen_45.vtf")
-	resource.AddFile("materials/models/weapons/v_models/pr0d.c4/screen_active.vmt")
-	resource.AddFile("materials/models/weapons/v_models/pr0d.c4/screen_active.vtf")
-	resource.AddFile("materials/models/weapons/v_models/pr0d.c4/screen_off.vmt")
-	resource.AddFile("materials/models/weapons/v_models/pr0d.c4/screen_off.vtf")
-	resource.AddFile("materials/models/weapons/v_models/pr0d.c4/screen_off_ref.vtf")
-	resource.AddFile("materials/models/weapons/v_models/pr0d.c4/screen_on.vmt")
-	resource.AddFile("materials/models/weapons/v_models/pr0d.c4/screen_on.vtf")
-	resource.AddFile("materials/models/weapons/v_models/pr0d.c4/screen_ref.vtf")
-	resource.AddFile("materials/vgui/ttt/icon_z_jihad.vmt")
-end
-
 SWEP.HoldType				= "slam"
 
 if CLIENT then
@@ -83,18 +39,18 @@ SWEP.Secondary.Ammo			= "none"
 SWEP.NoSights				= true
 
 function SWEP:Reload()
-end 
+end
 
 function SWEP:Initialize()
 	 util.PrecacheSound("siege/big_explosion.wav")
 	 util.PrecacheSound("siege/jihad.wav")
 end
 
-function SWEP:Think() 
+function SWEP:Think()
 end
 
 function SWEP:PrimaryAttack()
-	self.Weapon:SetNextPrimaryFire(CurTime() + 2)	
+	self.Weapon:SetNextPrimaryFire(CurTime() + 2)
 
 	local effectdata = EffectData()
 	effectdata:SetOrigin(self.Owner:GetPos())
@@ -104,12 +60,12 @@ function SWEP:PrimaryAttack()
 	effectdata:SetRadius(76)
 	util.Effect("Sparks", effectdata)
 	self.BaseClass.ShootEffects(self)
-		
+
 	-- The rest is only done on the server
 	if (SERVER) then
 		self.Owner:EmitSound(self.Owner.JihadSound or "siege/jihad.wav")
 
-		timer.Simple(2, function() 
+		timer.Simple(2, function()
 			local ent = ents.Create("env_explosion")
 			ent:SetPos(self.Owner:GetPos())
 			ent:SetOwner(self.Owner)
