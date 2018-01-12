@@ -10,7 +10,7 @@ if CLIENT then
 		desc				= "Kill yourself and everyone around you with a bomb!"
 	};
 
-	SWEP.Icon				= "vgui/ttt/icon_z_jihad"
+	SWEP.Icon				= "vgui/ttt/icon_eis_jihad"
 end
 
 SWEP.Base 					= "weapon_tttbase"
